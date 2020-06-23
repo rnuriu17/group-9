@@ -1,0 +1,59 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+	<form action="users-add">
+
+		<div class="container">
+
+			<div class="columns">
+
+				<div class="column is-6">
+					<h2 class="title is-4">General info</h2>
+
+					{{element('hidden', {'value':role, 'name': 'role'})}}
+					{{element('email', {label: 'Email', placeholder:'enter email', name:'email', required: true})}}
+
+					{% if role == 'client' %}
+						{{element('input', {label: 'Shop name', placeholder:'enter shop name', name:'shop', required: true})}}
+						{{element('input', {label: 'Nipt', placeholder:'enter NIPT number', name:'tax', required: true})}}
+					{% endif %}
+
+					{{element('input', {label: 'Address', placeholder:'enter address', name:'address', required: true})}}
+
+					{{element('input', {label: 'Phone nr', placeholder:'enter phone number', name:'phone', required: true})}}
+
+					{{element('input', {label: 'Username', placeholder:'enter username', name:'username', required: true})}}
+
+				</div>
+
+				<div class="column is-6 has-padding-left-md">
+
+					<h2 class="title is-4">Password</h2>
+					{{element('password', {required:true, label: 'Password', placeholder:'enter password', name:'password'})}}
+					{{element('password', {required:true, label: 'Confirm Password', placeholder:'enter password again', name:'confirm_password'})}}
+
+				</div>
+
+			</div>
+			<div class="columns">
+
+				<div class="column is-12">
+
+					<button type="submit" class="button is-medium is-success has-margin-top-sm">
+						<span>Add</span>
+						<span class="icon">
+							<i class="fas fa-user-plus"></i>
+						</span>
+					</button>
+					<a href="{{u}}users/{{role}}" class="button is-medium is-default has-margin-top-sm has-margin-left-sm">
+						<span>Cancel</span>
+					</a>
+				</div>
+			</div>
+
+		</div>
+	</form>
+
+{% endblock %}

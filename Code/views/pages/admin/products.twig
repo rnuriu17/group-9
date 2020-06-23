@@ -1,0 +1,31 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+
+	<div class="container">
+
+		<div class="columns">
+
+			<div class="column is-6">
+				<form action="products">
+
+					{{element('input', {required: true, value: page.title, label: 'Title', name: 'title'})}}
+					{{element('input', {required: true, label: 'Subtitle', value: page.subtitle, name: 'subtitle'})}}
+
+					<button type="submit" class="button is-medium is-success">
+						<span>Save</span>
+						<span class="icon">
+							<i class="fas fa-check"></i>
+						</span>
+					</button>
+
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

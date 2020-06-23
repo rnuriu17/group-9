@@ -1,0 +1,76 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+
+	{{component('admin/edit-page')}}
+
+	<section class="section">
+		<div class="container">
+			<div class="columns">
+				<div class="column is-8">
+					<div class="content is-medium">
+						<p>{{page.content|nl2br}}</p>
+					</div>
+				</div>
+				<div class="column is-4">
+					<div class="box">
+						<article class="media">
+							<div class="media-left">
+								<figure class="image is-48x48">
+									{{icon('email', 'width: 100%; height: 100%')}}
+								</figure>
+							</div>
+							<div class="media-content">
+								<div class="content">
+									Email
+									<br>
+									<a href="mailto:{{page.email}}">
+										<b>{{page.email}}</b>
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+					<div class="box">
+						<article class="media">
+							<div class="media-left">
+								<figure class="image is-48x48">
+									{{icon('phone', 'width: 100%; height: 100%')}}
+								</figure>
+							</div>
+							<div class="media-content">
+								<div class="content">
+									Phone
+									<br>
+									<a href="tel:{{page.phone}}">
+										<b>{{page.phone}}</b>
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+					<div class="box">
+						<article class="media">
+							<div class="media-left">
+								<figure class="image is-48x48">
+									{{icon('address', 'width: 100%; height: 100%')}}
+								</figure>
+							</div>
+							<div class="media-content">
+								<div class="content">
+									Address
+									<br>
+									<a href="https://maps.google.com/?q={{page.address|url_encode}}" target="_blank">
+										<b>{{page.address}}</b>
+									</a>
+								</div>
+							</div>
+						</article>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+{% endblock %}

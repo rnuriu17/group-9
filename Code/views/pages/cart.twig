@@ -1,0 +1,73 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+
+	<section class="section">
+		<div class="container">
+			<div class="columns">
+
+				{% if cart|length > 0 %}
+					<table class="table is-fullwidth">
+						<thead>
+							<tr>
+								<th>Code</th>
+								<th>Name</th>
+								<th>Unit</th>
+								<th>Amount</th>
+								<th>Price</th>
+								<th>Total</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody>
+							{% set amounts = 0 %}
+							{% set total = 0 %}
+
+							{% for id, amount in list %}
+								{% set product = products[id] %}
+								<tr class="cart_{{id}}">
+									<td>{{product.code}}</td>
+									<td>{{product.name}}</td>
+									<td>{{product.unit}}</td>
+									<td>{{amount}}</td>
+									<td>{{product.price|number_format(2, '.')}}
+										{{site.currency}}</td>
+									<td>{{(product.price * amount)|number_format(2, '.')}}
+										{{site.currency}}</td>
+									<td style="width: 50px;">
+										<a remove-from-cart="{{id}}" class="button is-danger is-small">
+											<i class="fas fa-trash"></i>
+										</a>
+									</td>
+								</tr>
+
+								{% set amounts = amounts + amount  %}
+								{% set total = total + (product.price * amount)  %}
+							{% endfor %}
+						</tbody>
+					</table>
+
+
+				</div>
+				<span c-cart-totals>{{component('shop/cart/totals', {total: total, amounts: amounts})}}</span>
+
+				<div class="level has-margin-top-lg">
+					<div class="level-left"></div>
+					<div class="level-right">
+						<a order-now class="button is-success is-medium">Order Now</a>
+					</div>
+				</div>
+			{% else %}
+
+				<h3 class="title is-5">
+					<div class="notification is-warning is-light">
+						You don't have any products in your shopping cart.
+					</div>
+				</h3>
+
+			{% endif %}
+		</div>
+	</section>
+{% endblock %}

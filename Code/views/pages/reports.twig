@@ -1,0 +1,113 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+	<section class="hero">
+		<div class="hero-body">
+			<div class="container">
+
+				<div class="columns is-vcentered">
+					<div class="column is-6">
+						<h1 class="title">Reports</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+
+		<div class="columns">
+
+			<div class="column">
+				{{component('reports/card', {label: 'Today', value: stats.today})}}
+			</div>
+
+			<div class="column">
+				{{component('reports/card', {label: 'Yesterday', value: stats.yesterday})}}
+			</div>
+
+			<div class="column">
+				{{component('reports/card', {label: '7 days', value: stats._7})}}
+			</div>
+
+			<div class="column">
+				{{component('reports/card', {label: '14 days', value: stats._14})}}
+			</div>
+
+			<div class="column">
+				{{component('reports/card', {label: 'Total', value: stats._30})}}
+			</div>
+
+		</div>
+
+		<div class="level has-margin-top-md">
+			<div class="level-left">
+				<div class="level-item">
+					<h3 class="title is-4">Last 14 days</h3>
+				</div>
+			</div>
+			<div class="level-right">
+				<div class="level-item">
+					<a href="{{u}}reports/all" class="button">show all orders</a>
+				</div>
+			</div>
+		</div>
+
+		<div class="columns">
+			<div class="column">
+				<table class="table stripped is-fullwidth">
+					<thead>
+						<tr>
+							<th>Invoice</th>
+							<th>User</th>
+							<th>Time</th>
+							<th>Date</th>
+							<th>Status</th>
+							<th>Total Products</th>
+							<th>Total Amount</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{% for i, data in orders %}
+							<tr>
+								<td>{{data.hash}}</td>
+								<td>
+									{{data.user_data.shop}}
+									<br>
+									{{data.user_data.username}}
+								</td>
+								<td>{{data.time|date('H:i')}}</td>
+								<td>{{data.time|date('d.m.Y')}}</td>
+								<td>{{data.status}}</td>
+								<td>{{data.products|length}}</td>
+								<td>{{data.total|number_format(2, '.')}}
+									{{site.currency}}</td>
+								<td style="width: 300px">
+									<a href="{{u}}order/print/{{data.hash}}" target="_blank" class="button is-small is-warning">
+										<span>print invoice</span>
+										<span class="icon">
+											<i class="fas fa-print"></i>
+										</span>
+									</a>
+
+									<a href="{{u}}order/detail/{{data.hash}}" class="button is-small is-info">
+										<span>details</span>
+										<span class="icon">
+											<i class="fas fa-eye"></i>
+										</span>
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.twig" %}
+
+{% block body %}
+
+	<section class="hero has-text-centered has-margin-top-lg">
+		<div class="hero-body">
+			<div class="container">
+				<h1 class="title">
+					Welcome to
+					<b>KLINT Company</b>
+				</h1>
+				<h2 class="subtitle">
+					Sweets & Others
+				</h2>
+			</div>
+		</div>
+	</section>
+
+	<div class="container has-margin-top-md has-padding-mobile">
+		<div class="columns is-centered">
+			<div class="column is-6-desktop is-5-widescreen is-4-fullhd is-8-tablet has-text-centered">
+
+				<h1 class="title is-4 has-text-weight-normal has-text-grey-dark">{{title}}</h1>
+
+
+				<div class="columns is-centered">
+					<div class="column is-8">
+						{% block content %}{% endblock %}
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+{% endblock %}

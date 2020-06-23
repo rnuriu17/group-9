@@ -1,0 +1,31 @@
+{% extends "templates/auth.twig" %}
+
+
+{% block content %}
+
+	{% if username %}
+		<div class="notification is-success">
+			You are successfully registered. Enter your password and login.
+		</div>
+	{% endif %}
+
+	<form action="login">
+
+		{{element('input', {label: 'Username', value: username, placeholder:'enter your username', name:'username', required: true})}}
+
+		{{element('password', {label: 'Password', placeholder:'enter your password', name:'password', required: true})}}
+
+		<button type="submit" class="button is-medium is-primary is-fullwidth has-margin-top-sm">Login</button>
+	</form>
+
+	<a href="{{u}}register" class="has-text-info is-inline-block is-link has-margin-top-sm">Register</a>
+{% endblock %}
+
+
+{% block scripts %}
+    <script>
+        {% if username %}
+            $('input[name=password]').focus();
+        {% endif %}
+    </script>
+{% endblock %}

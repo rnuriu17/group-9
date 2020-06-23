@@ -1,0 +1,12 @@
+{% extends "base.twig" %}
+
+
+{% block body_class %}has-navbar-fixed-top
+{% endblock %}
+
+{% block body %}
+	{{component('public/nav')}}
+
+	{% block content %}{% endblock %}
+
+{% endblock %}

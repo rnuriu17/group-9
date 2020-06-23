@@ -1,0 +1,14 @@
+hash	==	B92106CCB1
+hash1	==	E40AC16A38
+hash2	==	6D1FAEBAF8
+hash3	==	C2A44E6A45
+hash4	==	228D153A2D
+use_db	==	true
+version	==	15929214343843
+timezone	==	Europe/Tirane
+db_type	==	mysql
+db_name	==	shop
+db_server	==	localhost
+db_username	==	root
+db_status	==	true
+db_password	==	123123

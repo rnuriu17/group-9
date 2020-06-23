@@ -1,0 +1,6 @@
+<div class="field">
+	<label class="label has-text-grey-dark">{{label}}</label>
+	<div class="control">
+		<textarea class="textarea is-medium {{class}}" {% if required %} required="required" {% endif %} name="{{name}}" {{attr}} placeholder="{{placeholder}}">{{value|e}}</textarea>
+	</div>
+</div>

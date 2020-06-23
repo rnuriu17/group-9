@@ -1,0 +1,49 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+
+	<div class="container">
+
+		<div class="columns">
+
+
+			<div class="column is-6">
+
+				<form action="products-add">
+
+					{{element('input', {required: true, value: product.code, label: 'Code', name: 'code'})}}
+					{{element('input', {required: true, value: product.name, label: 'Name', name: 'name'})}}
+					{{element('number', {value: product.old_price, label: 'Old Price (for promotion)', name: 'old_price'})}}
+					{{element('number', {required: true, value: product.price, label: 'Price', name: 'price'})}}
+					{{element('input', {required: true, value: product.unit, label: 'Unit', name: 'unit', placeholder: 'e.g: per piece, per box, 10 per box'})}}
+					{{element('number', {required: true, value: product.stock, label: 'Stock', name: 'stock'})}}
+					{{element('textarea', {value: product.info, label: 'Info', name: 'info'})}}
+					{{element('file', {required: true, label: 'Upload image', name: 'image'})}}
+
+					{% if site.image %}
+						<div class="is-block has-margin-top-sm">
+							<img src="{{site.image}}" style="width: 300px;">
+						</div>
+					{% endif %}
+
+					<button type="submit" class="button is-medium is-success has-margin-top-sm">
+						<span>Add</span>
+						<span class="icon">
+							<i class="fas fa-check"></i>
+						</span>
+					</button>
+
+					<a href="{{u}}products" class="button is-medium is-link is-light has-margin-top-sm has-margin-left-xs">
+						Cancel
+					</a>
+
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

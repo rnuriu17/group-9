@@ -1,0 +1,23 @@
+<div class="level has-margin-top-lg">
+	<div class="level-left"></div>
+	<div class="level-right">
+		<div class="level-item">
+			<table class="table is-bordered total-table">
+				<tr>
+					<td>Total products</td>
+					<td>{{cart|length}}</td>
+				</tr>
+				<tr>
+					<td>Total product amounts</td>
+					<td>{{amounts}}</td>
+				</tr>
+				<tr>
+					<td>Total payment amount</td>
+					<td>{{total|number_format(2, '.')}}
+						{{site.currency}}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+
+</div>

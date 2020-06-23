@@ -1,0 +1,18 @@
+<div class="file {% if value %} has-name {% endif %} has-margin-top-sm">
+	<label class="file-label">
+		<input class="file-input" type="file" {% if required %} required="required" {% endif %} name="{{name}}">
+		<span class="file-cta">
+			<span class="file-icon">
+				<i class="fas fa-upload"></i>
+			</span>
+			<span class="file-label">
+				{{label}}
+			</span>
+		</span>
+		{% if value %}
+			<span class="file-name">
+				{{value}}
+			</span>
+		{% endif %}
+	</label>
+</div>

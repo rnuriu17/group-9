@@ -1,0 +1,15 @@
+<div class="field">
+	<label class="label has-text-grey-dark">{{label}}</label>
+	<div class="control">
+		<div class="select">
+			<select class="{{class}}" id="__{{name}}" {% if required %} required="required" {% endif %} name="{{name}}" {{attr}}>
+				{% if placeholder %}
+					<option value="">{{placeholder}}</option>
+				{% endif %}
+				{% for v, name in values %}
+					<option value="{{v}}" {% if v == value %} selected="selected" {% endif %}>{{name}}</option>
+				{% endfor %}
+			</select>
+		</div>
+	</div>
+</div>

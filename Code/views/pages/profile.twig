@@ -1,0 +1,57 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+	<form action="profile">
+
+		<div class="container">
+
+			<div class="columns">
+
+				<div class="column is-6">
+					<h2 class="title is-4">General info</h2>
+
+					{{element('email', {label: 'Email', value: user.email, placeholder:'enter your email', name:'email', required: true})}}
+
+					{% if user.role == 'client' %}
+						{{element('input', {label: 'Shop name', placeholder:'enter your shop name', value: user.shop, name:'shop', required: true})}}
+						{{element('input', {label: 'Nipt', placeholder:'enter your NIPT number', value: user.tax, name:'tax', required: true})}}
+					{% endif %}
+
+					{{element('input', {label: 'Address', placeholder:'enter your address', value: user.address, name:'address', required: true})}}
+
+					{{element('input', {label: 'Phone nr', placeholder:'enter your phone number', value: user.phone, name:'phone', required: true})}}
+
+					{{element('input', {label: 'Username', placeholder:'enter your username', value: user.username, name:'username', required: true})}}
+
+				</div>
+
+				<div class="column is-6 has-padding-left-md">
+
+					<h2 class="title is-4">Change your password</h2>
+					<p class="subtitle is-6">If you don't want to change your password, please leave it blank.</p>
+					{{element('password', {label: 'Password', placeholder:'enter your password', name:'password'})}}
+					{{element('password', {label: 'Confirm Password', placeholder:'enter your password again', name:'confirm_password'})}}
+
+				</div>
+
+			</div>
+			<div class="columns">
+
+				<div class="column is-12">
+
+
+					<button type="submit" class="button is-medium is-success has-margin-top-sm">
+						<span>Save</span>
+						<span class="icon">
+							<i class="fas fa-check"></i>
+						</span>
+					</button>
+				</div>
+			</div>
+
+		</div>
+	</form>
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends "templates/home.twig" %}
+
+
+{% block content %}
+
+
+	{{component('admin/edit-page')}}
+
+
+	{% if page.products.top %}
+		<section class="hero is-info is-bold">
+			<div class="hero-body">
+				<div class="container">
+					<h1 class="title">
+						Top Products
+					</h1>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<div class="columns">
+					{% for i, id in page.products.top %}
+						{% set data = products[id] %}
+						{% if data %}
+							<div class="column is-3-fullhd is-4-desktop is-6-tablet is-12-mobile">
+								{{components('products/single', {product: data})}}
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	{% endif %}
+
+	{% if page.products.promo %}
+		<section class="hero is-warning is-bold">
+			<div class="hero-body">
+				<div class="container">
+					<h1 class="title">
+						Promotions
+					</h1>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<div class="columns">
+					{% for i, id in page.products.promo %}
+						{% set data = products[id] %}
+						{% if data %}
+							<div class="column is-3-fullhd is-4-desktop is-6-tablet is-12-mobile">
+								{{components('products/single', {product: data})}}
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	{% endif %}
+
+	{% if page.products.new %}
+		<section class="hero is-danger is-bold">
+			<div class="hero-body">
+				<div class="container">
+					<h1 class="title">
+						New Products
+					</h1>
+				</div>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container">
+				<div class="columns">
+					{% for i, id in page.products.new %}
+						{% set data = products[id] %}
+						{% if data %}
+							<div class="column is-3-fullhd is-4-desktop is-6-tablet is-12-mobile">
+								{{components('products/single', {product: data})}}
+							</div>
+						{% endif %}
+					{% endfor %}
+				</div>
+			</div>
+		</section>
+	{% endif %}
+{% endblock %}

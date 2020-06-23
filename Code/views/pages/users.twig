@@ -1,0 +1,29 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+	<section class="hero">
+		<div class="hero-body">
+			<div class="container">
+
+				<div class="columns is-vcentered">
+					<div class="column is-6">
+						<h1 class="title">Users</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+
+		<div class="columns">
+
+			{% for i, role in roles %}
+				<div class="column">{{component('users/role-box', {role: role})}}</div>
+			{% endfor %}
+		</div>
+
+	</div>
+{% endblock %}

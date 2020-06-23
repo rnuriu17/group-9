@@ -1,0 +1,36 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+
+	<div class="container">
+
+		<div class="columns">
+
+			<div class="column is-6">
+				<form action="about">
+
+					{{element('input', {required: true, value: page.title, label: 'Title', name: 'title'})}}
+					{{element('input', {required: true, label: 'Subtitle', value: page.subtitle, name: 'subtitle'})}}
+					{{element('input', {required: true, label: 'Address', value: page.address, name: 'address'})}}
+					{{element('input', {required: true, label: 'Email', value: page.email, name: 'email'})}}
+					{{element('input', {required: true, label: 'Phone', value: page.phone, name: 'phone'})}}
+					{{element('textarea', {required: true, label: 'Content', value: page.content, name: 'content'})}}
+
+
+					<button type="submit" class="button is-medium is-success">
+						<span>Save</span>
+						<span class="icon">
+							<i class="fas fa-check"></i>
+						</span>
+					</button>
+
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

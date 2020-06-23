@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>{{title}}</title>
+		<link rel="stylesheet" href="{{url.css}}bootstrap.css">
+	</head>
+	<body>
+		<style>
+			body {
+				background: #EEE;
+				/* font-size:0.9em !important; */
+			}
+
+			.invoice {
+				width: 970px !important;
+				margin: 50px auto;
+			}
+			.invoice .invoice-header {
+				padding: 25px 25px 15px;
+			}
+			.invoice .invoice-header h1 {
+				margin: 0;
+			}
+			.invoice .invoice-header .media .media-body {
+				font-size: 0.9em;
+				margin: 0;
+			}
+			.invoice .invoice-body {
+				border-radius: 10px;
+				padding: 25px;
+				background: #FFF;
+			}
+			.invoice .invoice-footer {
+				padding: 15px;
+				font-size: 0.9em;
+				text-align: center;
+				color: #999;
+			}
+
+			.logo {
+				max-height: 70px;
+				border-radius: 10px;
+			}
+
+			.dl-horizontal {
+				margin: 0;
+			}
+			.dl-horizontal dt {
+				float: left;
+				width: 80px;
+				overflow: hidden;
+				clear: left;
+				text-align: right;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+			.dl-horizontal dd {
+				margin-left: 90px;
+			}
+
+			.rowamount {
+				padding-top: 15px !important;
+			}
+
+			.rowtotal {
+				font-size: 1.3em;
+			}
+
+			.colfix {
+				width: 12%;
+			}
+
+			.mono {
+				font-family: monospace;
+			}
+		</style>
+		<div class="container invoice">
+			<div class="invoice-header">
+				<div class="row">
+					<div class="col-xs-8">
+						<h1>Invoice
+							<small style="letter-spacing: 2px;">#{{data.hash}}</small>
+						</h1>
+						<h4 class="text-muted">Status:
+							{{data.status}}
+							| Time:
+							{{data.time|date('H:i')}}
+							| Date:
+							{{data.time|date('d.m.Y')}}</h4>
+					</div>
+					<div class="col-xs-4">
+						<div class="media">
+							<div class="media-left">
+								<img class="media-object logo" style="border-radius: 0px; width: 100%;" src="{{site.logo}}"/>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="invoice-body">
+				<div class="row">
+					<div class="col-xs-5">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Company Details</h3>
+							</div>
+							<div class="panel-body">
+								<dl class="dl-horizontal">
+									<dt>Name</dt>
+									<dd>
+										<strong>{{site.title}}</strong>
+									</dd>
+									<dt>Address</dt>
+									<dd>{{site.invoice.address}}</dd>
+									<dt>Phone</dt>
+									<dd>{{site.invoice.phone}}</dd>
+									<dt>Email</dt>
+									<dd>{{site.invoice.email}}</dd>
+									<dt>NIPT</dt>
+									<dd class="mono">{{site.invoice.nipt}}</dd>
+								</div>
+							</div>
+						</div>
+						<div class="col-xs-7">
+							<div class="panel panel-default">
+								<div class="panel-heading">
+									<h3 class="panel-title">Customer Details</h3>
+								</div>
+								<div class="panel-body">
+									<dl class="dl-horizontal">
+										<dt>Name</dt>
+										<dd>{{data.user_data.shop}}</dd>
+										<dt>Address</dt>
+										<dd>{{data.user_data.address}}</dd>
+										<dt>Phone</dt>
+										<dd>{{data.user_data.phone}}</dd>
+										<dt>Email</dt>
+										<dd>{{data.user_data.email}}</dd>
+										<dt>NIPT</dt>
+										<dd class="mono">{{data.user_data.nipt}}</dd>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h3 class="panel-title">Products</h3>
+							</div>
+							<table class="table table-bordered table-condensed">
+								<thead>
+									<tr>
+										<th>Code</th>
+										<th>Name</th>
+										<th>Unit</th>
+										<th class="text-center">Price</th>
+										<th class="text-center">Amount</th>
+										<th class="text-center">Total</th>
+									</tr>
+								</thead>
+								<tbody>
+									{% for i, p in data.products_data.products %}
+										<tr>
+											<td>{{p.code}}</td>
+											<td>{{p.name}}</td>
+											<td>{{p.unit}}</td>
+											<td class="text-right">
+												<span class="mono">{{p.price|number_format(2, ',')}}
+													{{site.currency}}</span>
+												<br>
+											</td>
+											<td class="text-right">
+												<span class="mono">{{data.products[p.id]}}</span>
+											</td>
+											<td class="text-right">
+												<strong class="mono">{{(p.price * data.products[p.id])|number_format(2, ',')}}
+													{{site.currency}}</strong>
+											</td>
+										</tr>
+									{% endfor %}
+
+								</tbody>
+							</table>
+						</div>
+						<table class="table table-bordered table-condensed" style="width: 500px; float: right;">
+							<thead>
+								<tr>
+									<td class="text-center col-xs-1">Products</td>
+									<td class="text-center col-xs-1">Total</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<th class="text-center rowtotal mono">{{data.products|length}}</th>
+									<th class="text-center rowtotal mono">{{data.total|number_format(2, ',')}}
+										{{site.currency}}</th>
+								</tr>
+							</tbody>
+						</table>
+						<img style="width: 150px; height: 150px;" src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{u ~ 'order/print/'~data.hash|url_encode}}">
+
+					</div>
+					<div class="invoice-footer">
+						Thank you for choosing our services.
+						<br/>
+						We hope to see you again soon
+						<br>
+						<strong>{{site.title}}</strong>
+					</div>
+				</div>
+			</body>
+		</html>
+	</body>
+</html>

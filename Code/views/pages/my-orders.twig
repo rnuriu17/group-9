@@ -1,0 +1,76 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+	<section class="hero">
+		<div class="hero-body">
+			<div class="container">
+
+				<div class="columns is-vcentered">
+					<div class="column is-8">
+						<h1 class="title">My Orders -
+							{{list|length}}</h1>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+
+		<div class="columns">
+
+			<div class="column">
+
+				<table class="table stripped is-fullwidth">
+					<thead>
+						<tr>
+							<th>Invoice</th>
+							<th>Time</th>
+							<th>Date</th>
+							<th>Status</th>
+							<th>Total Products</th>
+							<th>Total Amount</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{% for i, data in list %}
+							<tr>
+								<td>{{data.hash}}</td>
+								<td>{{data.time|date('H:i')}}</td>
+								<td>{{data.time|date('d.m.Y')}}</td>
+								<td>{{data.status}}</td>
+								<td>{{data.products|length}}</td>
+								<td>{{data.total|number_format(2, '.')}}
+									{{site.currency}}</td>
+								<td style="width: 300px">
+									<a href="{{u}}order/print/{{data.hash}}" target="_blank" class="button is-small is-warning">
+										<span>print invoice</span>
+										<span class="icon">
+											<i class="fas fa-print"></i>
+										</span>
+									</a>
+
+									<a href="{{u}}order/products/{{data.hash}}" class="button is-small is-info">
+										<span>show products</span>
+										<span class="icon">
+											<i class="fas fa-eye"></i>
+										</span>
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+
+	</div>
+{% endblock %}

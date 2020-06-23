@@ -1,0 +1,18 @@
+<div class="modal" id="modal_{{id}}">
+	<div class="modal-background"></div>
+	<div class="modal-card has-text-{{centered ? 'centered' : ''}}">
+		{% if title %}
+			<header class="modal-card-head has-background-{{title_bg}}">
+				<p class="modal-card-title has-text-{{title_color}}">{{title}}</p>
+				<button class="delete" close-modal aria-label="close"></button>
+			</header>
+		{% endif %}
+		<section class="modal-card-body">{{body}}
+		</section>
+		{% if footer %}
+			<footer class="modal-card-foot">
+				{{footer}}
+			</footer>
+		{% endif %}
+	</div>
+</div>

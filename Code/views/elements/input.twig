@@ -1,0 +1,9 @@
+{% if not type %}
+	{% set type = 'input' %}
+{% endif %}
+<div class="field">
+	<label class="label has-text-grey-dark">{{label}}</label>
+	<div class="control">
+		<input class="input is-medium {{class}}" id="__{{name}}" {% if required %} required="required" {% endif %} value="{{value|e}}" name="{{name}}" {{attr}} type="{{type}}" placeholder="{{placeholder}}">
+	</div>
+</div>

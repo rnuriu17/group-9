@@ -1,0 +1,49 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+
+	<div class="container">
+
+		<div class="columns">
+
+
+			<div class="column is-6">
+
+				{% if success %}
+					<div class="notification is-success">
+						Settings updated.
+					</div>
+				{% endif %}
+				<form action="settings">
+
+					{{element('input', {required: true, value: site.title, label: 'Title', name: 'title'})}}
+					{{element('input', {required: true, value: site.currency, label: 'Currency', name: 'currency'})}}
+					{{element('input', {required: true, value: site.invoice.phone, label: 'Invoice - Phone', name: 'invoice[phone]'})}}
+					{{element('input', {required: true, value: site.invoice.email, label: 'Invoice - Email', name: 'invoice[email]'})}}
+					{{element('input', {required: true, value: site.invoice.address, label: 'Invoice - Address', name: 'invoice[address]'})}}
+					{{element('input', {required: true, value: site.invoice.nipt, label: 'Invoice - NIPT', name: 'invoice[nipt]'})}}
+					{{element('file', {label: 'Upload logo', name: 'logo'})}}
+
+					{% if site.logo %}
+						<div class="is-block has-margin-top-sm">
+							<img src="{{site.logo}}" style="width: 300px;">
+						</div>
+					{% endif %}
+
+					<button type="submit" class="button is-medium is-success has-margin-top-sm">
+						<span>Save</span>
+						<span class="icon">
+							<i class="fas fa-check"></i>
+						</span>
+					</button>
+
+				</form>
+			</div>
+
+		</div>
+
+	</div>
+
+{% endblock %}

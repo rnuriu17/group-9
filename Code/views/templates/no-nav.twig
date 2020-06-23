@@ -1,0 +1,16 @@
+{% extends "base.twig" %}
+
+
+{% block body_class %}has-navbar-fixed-top
+{% endblock %}
+
+{% block body %}
+	{{component('public/nav-logo')}}
+
+	{{component('title', {title: pageTitle})}}
+
+	<div class="container is-fluid">
+		{% block content %}{% endblock %}
+	</div>
+
+{% endblock %}

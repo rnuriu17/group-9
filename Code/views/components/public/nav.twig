@@ -1,0 +1,91 @@
+<nav class="navbar is-fixed-top" role="navigation" aria-label="main navigation">
+	<div class="navbar-brand">
+		<a class="navbar-item" href="{{u}}">
+			<img src="{{site.logo}}" style="height: 22px;">
+		</a>
+
+		<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar">
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+			<span aria-hidden="true"></span>
+		</a>
+	</div>
+
+	<div id="navbar" class="navbar-menu">
+		<div class="navbar-start">
+			<a href="{{u}}" class="navbar-item">
+				Home
+			</a>
+
+			<a href="{{u}}shop" class="navbar-item">
+				Shop
+			</a>
+			<a href="{{u}}orders" class="navbar-item">
+				My Orders
+			</a>
+			<a href="{{u}}about" class="navbar-item">
+				About us
+			</a>
+
+			<a href="{{u}}exchange" class="navbar-item">
+				Currency Exchange
+			</a>
+
+			{% if user.role == 'admin' %}
+
+				<div class="navbar-item has-dropdown is-hoverable">
+					<a class="navbar-link">
+						Admin
+					</a>
+
+					<div class="navbar-dropdown">
+						<a href="{{u}}products" class="navbar-item">
+							Products List
+						</a>
+						<a href="{{u}}users" class="navbar-item">
+							Users
+						</a>
+						<a href="{{u}}reports" class="navbar-item">
+							Reports
+						</a>
+						<hr class="navbar-divider">
+						<a href="{{u}}settings" class="navbar-item">
+							Site settings
+						</a>
+					</div>
+				</div>
+			{% endif %}
+		</div>
+
+		<div class="navbar-end">
+			<div class="navbar-item">
+				<div class="buttons">
+					<a class="button is-primary is-light" href="{{u}}cart">
+						<span class="icon">
+							<i class="fas fa-shopping-cart"></i>
+						</span>
+						<span>
+							<strong>Shopping Cart
+								{{component('shop/cart/count')}}
+							</span>
+						</strong>
+					</span>
+				</a>
+				<a href="{{u}}profile" class="button is-link is-light">
+					<span class="icon">
+						<i class="fas fa-user"></i>
+					</span>
+					<span>
+						<strong>{{user.username}}</strong>
+					</span>
+				</a>
+				<a href="{{u}}logout" class="button is-warning is-light">
+					<span>Logout</span>
+					<span class="icon">
+						<i class="fas fa-sign-out-alt"></i>
+					</span>
+				</a>
+			</div>
+		</div>
+	</div>
+</div></nav>

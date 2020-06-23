@@ -1,0 +1,8 @@
+{
+    "require": {
+        "twig/twig": "^3.0",
+        "scssphp/scssphp": "^1.0",
+        "catfan/medoo": "^1.7",
+        "cocur/slugify": "^4.0"
+    }
+}

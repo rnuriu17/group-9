@@ -1,0 +1,110 @@
+{% extends "templates/no-nav.twig" %}
+
+
+{% block content %}
+
+	<section class="hero">
+		<div class="hero-body">
+			<div class="container is-fluid">
+
+				<div class="columns is-vcentered">
+					<div class="column is-6">
+						<h1 class="title">Magazine</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container is-fluid">
+
+		<div class="columns">
+
+			<div class="column">
+				{{component('reports/card', {label: 'Pending', value: stats.pending})}}
+			</div>
+
+			<div class="column">
+				{{component('reports/card', {label: 'Delivery', value: stats.delivery})}}
+			</div>
+
+			<div class="column">
+				{{component('reports/card', {label: 'Completed', value: stats.completed})}}
+			</div>
+
+			<div class="column">
+				{{component('reports/card', {label: 'Canceled', value: stats.canceled})}}
+			</div>
+
+		</div>
+
+		<div class="level has-margin-top-md">
+			<div class="level-left">
+				<div class="level-item">
+					<h3 class="title is-4">Pending Orders</h3>
+				</div>
+			</div>
+		</div>
+
+		<div class="columns">
+			<div class="column">
+				<table class="table stripped is-fullwidth">
+					<thead>
+						<tr>
+							<th>Invoice</th>
+							<th>User</th>
+							<th>Time</th>
+							<th>Date</th>
+							<th>Status</th>
+							<th>Total Products</th>
+							<th>Total Amount</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{% for i, data in orders %}
+							<tr class="order_{{data.hash}}">
+								<td>{{data.hash}}</td>
+								<td>
+									{{data.user_data.shop}}
+									<br>
+									{{data.user_data.username}}
+								</td>
+								<td>{{data.time|date('H:i')}}</td>
+								<td>{{data.time|date('d.m.Y')}}</td>
+								<td>{{data.status}}</td>
+								<td>{{data.products|length}}</td>
+								<td>{{data.total|number_format(2, '.')}}
+									{{site.currency}}</td>
+								<td style="width: 300px">
+									<a href="{{u}}order/print/{{data.hash}}" target="_blank" class="button is-small is-warning">
+										<span>print invoice</span>
+										<span class="icon">
+											<i class="fas fa-print"></i>
+										</span>
+									</a>
+
+									<a deliver-order="{{data.hash}}" class="button is-small is-info">
+										<span>delivery</span>
+										<span class="icon">
+											<i class="fas fa-truck"></i>
+										</span>
+									</a>
+									<a cancel-order="{{data.hash}}" class="button is-small is-danger">
+										<span>cancel</span>
+										<span class="icon">
+											<i class="fas fa-times"></i>
+										</span>
+									</a>
+								</td>
+							</tr>
+						{% endfor %}
+
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+	</div>
+{% endblock %}

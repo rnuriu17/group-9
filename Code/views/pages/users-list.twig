@@ -1,0 +1,87 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+	<section class="hero">
+		<div class="hero-body">
+			<div class="container">
+
+				<div class="columns is-vcentered">
+					<div class="column is-6">
+						<h1 class="title">{{r.title}}
+							-
+							<span class="user-count">{{list|length}}</span>
+						</h1>
+					</div>
+					<div class="column is-6 has-text-right">
+						<a href="{{u}}user/add?role={{r.type}}" class="button is-primary has-margin-right-sm">
+							<span class="icon">
+								<i class="fas fa-user-plus"></i>
+							</span>
+							<span>Add new user</span>
+						</a>
+						{% for i, role in roles %}
+							<a href="{{u}}users/{{role.type}}" class="button {% if page[1] == role.type %}is-info{% endif %}">
+								<span>{{role.title}}</span>
+							</a>
+						{% endfor %}
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<div class="container">
+
+		<div class="columns">
+
+			<div class="column">
+
+				<table class="table stripped is-fullwidth">
+					<thead>
+						<tr>
+							<th>ID</th>
+							<th>Username</th>
+							<th>Email</th>
+							<th>Created</th>
+							<th>Actions</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{% for i, data in list %}
+							<tr class="u_{{data.hash}}">
+								<td>{{data.hash}}</td>
+								<td>{{data.username}}</td>
+								<td>{{data.email}}</td>
+								<td>{{data.created|date('d.m.Y H:i')}}</td>
+								<td style="width: 300px">
+									{% if user.id != data.id %}
+										<a href="{{u}}user/edit/{{data.hash}}" class="button is-small is-info">
+											<span>Edit</span>
+											<span class="icon">
+												<i class="fas fa-edit"></i>
+											</span>
+										</a>
+
+										<a delete-user="{{data.hash}}" class="button is-small is-danger">
+											<span>Delete</span>
+											<span class="icon">
+												<i class="fas fa-trash"></i>
+											</span>
+										</a>
+									{% endif %}
+								</td>
+							</tr>
+						{% endfor %}
+
+					</tbody>
+				</table>
+
+			</div>
+
+		</div>
+
+	</div>
+{% endblock %}

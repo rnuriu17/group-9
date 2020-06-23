@@ -1,0 +1,41 @@
+<div class="card" product="{{product.id}}">
+	<div class="card-image">
+		<figure class="image is-4by3">
+			<img src="{{product.image}}">
+		</figure>
+	</div>
+	<div class="card-content">
+		<div class="media">
+			<div class="media-content">
+				<p class="title is-4">
+					{{product.name}}
+				</p>
+				<p class="subtitle is-6">{{product.unit}}
+					/
+					{% if product.old_price %}
+						<s class="has-text-danger">{{product.old_price|number_format(2, '.')}}
+							{{site.currency}}</s>
+					{% endif %}
+					<b>{{product.price|number_format(2, '.')}}
+						{{site.currency}}</b>
+				</p>
+			</div>
+		</div>
+		<div class="content">
+			{{product.info}}
+		</div>
+	</div>
+	<footer class="card-footer">
+		<p class="card-footer-item">
+			<input type="number" min="1" class="input has-text-centered" amount placeholder="amount" value="1">
+		</p>
+		<p class="card-footer-item">
+			<a add-to-cart="{{product.id}}" class="button is-info">
+				<span class="icon">
+					<i class="fas fa-shopping-cart"></i>
+				</span>
+				<span>Add to cart</span>
+			</a>
+		</p>
+	</footer>
+</div>

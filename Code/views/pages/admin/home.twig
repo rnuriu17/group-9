@@ -1,0 +1,56 @@
+{% extends "templates/page.twig" %}
+
+
+{% block content %}
+
+	<form action="home">
+
+		<div class="container">
+
+			<div class="columns">
+
+				<div class="column has-padding-right-nm">
+
+					<h3 class="title is-4">Top products</h3>
+
+					{% for i in 1..8 %}
+						{{element('select', {value: page.products.top[i], placeholder: 'select', values: products, label: i ~ ' - Product', name: 'products[top]['~i~']'})}}
+					{% endfor %}
+
+
+				</div>
+				<div class="column has-padding-left-sm has-padding-right-sm">
+
+					<h3 class="title is-4">Promotions</h3>
+
+					{% for i in 1..8 %}
+						{{element('select', {value: page.products.promo[i], placeholder: 'select', values: products, label: i ~ ' - Product', name: 'products[promo]['~i~']'})}}
+					{% endfor %}
+
+				</div>
+				<div class="column has-padding-left-nm">
+
+					<h3 class="title is-4">New products</h3>
+
+					{% for i in 1..8 %}
+						{{element('select', {value: page.products.new[i], placeholder: 'select', values: products, label: i ~ ' - Product', name: 'products[new]['~i~']'})}}
+					{% endfor %}
+
+
+				</div>
+
+			</div>
+
+			<div class="columns has-margin-top-md">
+				<button type="submit" class="button is-medium is-success">
+					<span>Save</span>
+					<span class="icon">
+						<i class="fas fa-check"></i>
+					</span>
+				</button>
+			</div>
+
+		</div>
+	</form>
+
+{% endblock %}

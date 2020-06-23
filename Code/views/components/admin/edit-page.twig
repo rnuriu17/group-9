@@ -1,0 +1,16 @@
+{% if user.role == 'admin' %}
+	<div class="edit-page">
+		{% set _url = u ~ 'home/' %}
+		{% if uri|length > 1 %}
+			{% set _url = uri ~ '/' %}
+		{% endif %}
+		<a href="{{_url}}edit" class="button is-info">
+			<span class="icon">
+				<i class="fas fa-edit"></i>
+			</span>
+			<span>
+				<strong>Edit this page</strong>
+			</span>
+		</a>
+	</div>
+{% endif %}
